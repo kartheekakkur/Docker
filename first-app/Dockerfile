@@ -20,7 +20,7 @@ COPY . .
 CMD ["tini", "--", "node", "./bin/www"]
 
 
-# Overview of this assignment
+# Overview
 # use the instructions from developer below to create a working Dockerfile
 # feel free to add command inline below or use a new file, up to you (but must be named Dockerfile)
 # once Dockerfile builds correctly, start container locally to make sure it works on http://localhost
