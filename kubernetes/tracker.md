@@ -1,7 +1,0 @@
-# Kubernetes Deployment of the Microservices Architecture
-
-
-
-
-
-This version targets Kubernetes as the orchestration system. We're going to use k8s features to achieve this, whilst simplifying the implementation.
