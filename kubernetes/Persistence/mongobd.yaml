@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+spec:
+ selector:
+  matchLabels: 
+   app: mongodb
+ replicas: 1
+ template:
+  metadata:
+   labels:
+    app: mongodb
+  spec:
+   containers:
+   - name: mongodb
+     image: mongo:latest
+     volumeMounts:
+      - name: mongo-azure
+        mountPath: /data/db
+   volumes:
+    - name: mongo-azure
+      azureDisk:
+       kind: Managed
+       diskName: MyAKSDisk
+       diskURI: /subscriptions/7684bb9b-db56-4b18-9fe1-b0c2c65f2fb7/resourcegroups/MC_AKS-ResourceGroup_akscluster-test_westus/providers/Microsoft.Compute/disks/MyAksDisk
+  
+---
+kind: Service
+apiVersion : v1 
+metadata:
+ name: fleetman-mongodb
+spec:
+ selector:
+  app: mongodb
+ ports:
+  - name: mongoport
+    port: 27017
+ type: ClusterIP
